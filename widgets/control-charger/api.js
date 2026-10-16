@@ -159,6 +159,31 @@ module.exports = {
     }
   },
 
+  async authorizeChargeSession({ homey, query }) {
+    const selectedDeviceId = query.deviceId;
+    const driverTypes = ['pro', 'go', 'go2', 'home'];
+    let selectedDevice = null;
+
+    for (const driverType of driverTypes) {
+      try {
+        const driver = await homey.drivers.getDriver(driverType);
+        selectedDevice = driver.getDevices().find(device => device.getId() === selectedDeviceId);
+        if (selectedDevice) break;
+      } catch (error) {
+        continue;
+      }
+    }
+
+    if (!selectedDevice) return { status: 'error', message: 'Device not found' };
+
+    try {
+      await selectedDevice.authorizeChargeSession();
+      return { status: 'ok', message: 'Charging session authorized' };
+    } catch (error) {
+      return { status: 'error', message: `Failed to authorize charging session: ${error.message}` };
+    }
+  },
+
   async setChargingMode({ homey, query, body }) {
     const selectedDeviceId = query.deviceId;
     const chargingMode = body.chargingMode;

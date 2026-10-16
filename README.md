@@ -4,6 +4,21 @@
 
 Adds support for Zaptec charging products.
 
+This repository is a fork of the Homey Zaptec app maintained at
+[W3BNVR/Homey.zaptec](https://github.com/W3BNVR/Homey.zaptec).
+
+## Charging session authorization
+
+The Charger widget includes an **Authorize** button for authorizing the connected
+charging session. This is separate from the existing **Access** control, which
+changes whether the installation requires authentication for charging.
+
+The session button calls Zaptec's `POST /api/chargers/{id}/authorizecharge`
+endpoint. Zaptec does not list this endpoint in its public API reference, so it
+may change without notice. Authorization is intended for installations using
+Zaptec's native authentication; it does not change the installation's
+authentication settings.
+
 ## Documentation
 Integration guide is found [here](https://zaptec.readme.io/)
 

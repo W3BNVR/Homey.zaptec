@@ -106,5 +106,8 @@
   },
   "1.10.4": {
     "en": "Add missing scope parameter to authentication"
+  },
+  "1.10.5": {
+    "en": "Add charging-session authorization to the widget and Flow cards"
   }
 }

@@ -107,6 +107,10 @@ class ProDriver extends Homey.Driver {
       .registerRunListener(async ({ device }) => device.stopCharging());
 
     this.homey.flow
+      .getActionCard('pro_authorize_charge_session')
+      .registerRunListener(async ({ device }) => device.authorizeChargeSession());
+
+    this.homey.flow
       .getActionCard('pro_cable_permanent_lock')
       .registerRunListener(async ({ device }) =>
         device

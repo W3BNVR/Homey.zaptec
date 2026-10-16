@@ -11,6 +11,8 @@
     "authentication_failed": "Failed to authenticate with new credentials"
   },
   "widget": {
+    "authorize": "Authorize",
+    "session": "Charging session",
     "cable": "Cable",
     "chargemode": "Chargemode",
     "access": "Access",

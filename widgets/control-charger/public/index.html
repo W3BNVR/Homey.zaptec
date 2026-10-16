@@ -46,6 +46,13 @@
           <p class="homey-text-small" data-i18n="widget.chargemode">Chargemode</p>
           <p class="homey-text-small-light">loading...</p>
         </div>
+        <div class="locks-container" id="authorizeContainer">
+          <md-filled-icon-button>
+            <md-icon>lock_open</md-icon>
+          </md-filled-icon-button>
+          <p class="homey-text-small" data-i18n="widget.authorize">Authorize</p>
+          <p class="homey-text-small-light" data-i18n="widget.session">Charging session</p>
+        </div>
         <div class="locks-container" id="accessContainer">
           <md-filled-icon-button>
             <md-icon>key</md-icon>
@@ -62,6 +69,7 @@
 
         const $locksContainer = document.getElementById('locksContainer');
         const $accessContainer = document.getElementById('accessContainer');
+        const $authorizeContainer = document.getElementById('authorizeContainer');
         const $chargeModeContainer = document.getElementById('chargeModeContainer');
         const $cableIcon = $locksContainer.querySelector('md-icon');
         const $cableStatusText = $locksContainer.querySelector('.homey-text-small-light');
@@ -74,6 +82,7 @@
         const $selectedDeviceId = Homey.getDeviceIds()[0];
         const $cableButton = $locksContainer.querySelector('md-filled-icon-button');
         const $accessButton = $accessContainer.querySelector('md-filled-icon-button');
+        const $authorizeButton = $authorizeContainer.querySelector('md-filled-icon-button');
         const $mainChargeFab = document.getElementById('mainChargeFab');
         const $fabMenuHorizontal = document.getElementById('fabMenuHorizontal');
         const $miniFabs = document.querySelectorAll('.mini-fab');
@@ -111,6 +120,16 @@
           .catch(error => {
             console.error('Error setting authentication requirement:', error);
           });
+        });
+
+        $authorizeButton.addEventListener('click', () => {
+          $authorizeButton.disabled = true;
+          Homey.api('POST', `/authorize-session?deviceId=${$selectedDeviceId}`)
+            .then(result => {
+              if (result.status !== 'ok') throw new Error(result.message);
+            })
+            .catch(error => console.error('Error authorizing charging session:', error))
+            .finally(() => { $authorizeButton.disabled = false; });
         });
 
         // Add click event listener to main FAB

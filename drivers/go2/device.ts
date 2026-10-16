@@ -772,6 +772,13 @@ export class Go2Charger extends Homey.Device {
       });
   }
 
+  public async authorizeChargeSession(): Promise<boolean> {
+    if (!this.api) throw new Error('API not initialized!');
+    await this.api.authorizeCharge(this.getData().id);
+    this.logToDebug('Charging session authorized');
+    return true;
+  }
+
   public async lockCable(lockCable: boolean) {
     if (this.api === undefined) throw new Error(`API not initialized!`);
     return this.api

@@ -26,6 +26,10 @@
       "method": "PUT",
       "path": "/auth"
     },
+    "authorizeChargeSession": {
+      "method": "POST",
+      "path": "/authorize-session"
+    },
     "setChargingMode": {
       "method": "PUT",
       "path": "/charging-mode"

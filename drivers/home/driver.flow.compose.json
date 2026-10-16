@@ -267,6 +267,17 @@
       }
     },
     {
+      "id": "home_authorize_charge_session",
+      "title": {
+        "en": "Authorize charging session",
+        "no": "Autoriser ladeøkt"
+      },
+      "hint": {
+        "en": "Authorize the connected vehicle to charge. Requires native authentication on the Zaptec installation.",
+        "no": "Autoriser den tilkoblede bilen for lading. Krever innebygd autentisering på Zaptec-installasjonen."
+      }
+    },
+    {
       "id": "home_cable_permanent_lock",
       "title": {
         "en": "Lock cable to charging station",

@@ -11,6 +11,8 @@
     "authentication_failed": "Kunne ikke autentisere med nye innloggingsopplysninger"
   },
   "widget": {
+    "authorize": "Autoriser",
+    "session": "Ladeøkt",
     "cable": "Kabel",
     "chargemode": "Lademodus",
     "access": "Tilgang",
